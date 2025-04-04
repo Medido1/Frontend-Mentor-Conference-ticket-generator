@@ -22,21 +22,21 @@ function MobileForm() {
   };
 
   return (
-    <form className="px-2 max-w-md">
+    <div className="px-2 max-w-md">
       <h1 className="text-3xl font-display font-semibold text-white !important">
         Your Journey to Coding Conf 2025 Starts Here!
       </h1>
       <p className="text-xl font-display text-[#d2d1d6] mt-6 font-medium">
         Secure your spot at next year's biggest coding conference.
       </p>
-      <div className="pt-6 flex flex-col items-start gap-2">
+      <form className="pt-6 px-4 flex flex-col items-start gap-2">
         <p
           className="text-xl font-display text-white font-light"
         >
           Upload Avatar
         </p>
         <div
-          className="border-2 border-dashed border-gray-400 rounded-lg p-6 
+          className="border-2 border-dashed border-gray-400 rounded-lg   
         bg-blue-950 w-full aspect-square relative max-h-60 flex flex-col justify-center"
         >
           <label htmlFor="avatarInput">
@@ -68,8 +68,8 @@ function MobileForm() {
           </p>
         </div>
         <input type="file" id="avatarInput" onChange={verifyFileValidity}/>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
 

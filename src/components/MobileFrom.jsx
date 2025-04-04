@@ -11,16 +11,18 @@ function MobileForm() {
         Secure your spot at next year's biggest coding conference.
       </p>
       <div className="pt-6 flex flex-col items-start gap-2">
-        <label className="text-xl font-display text-white font-light" htmlFor="avatarInput">
+        <p className="text-xl font-display text-white font-light" htmlFor="avatarInput">
           Upload Avatar
-        </label>
+        </p>
         <div className="border-2 border-dashed border-gray-400 rounded-lg p-6 
         bg-blue-950 w-full">
-          <img 
-            src={uploadIcon} 
-            alt="upload file"
-            className='cursor-pointer bg-gray-700 mx-auto rounded-md p-2' 
-          />
+          <label htmlFor="avatarInput">
+            <img 
+              src={uploadIcon} 
+              alt="upload file"
+              className='cursor-pointer bg-gray-700 mx-auto rounded-md p-2' 
+            />
+          </label>
           <p className='text-lg font-display text-[#d2d1d6] font-light mt-4'>
             Drag and drop or click to upload
           </p>

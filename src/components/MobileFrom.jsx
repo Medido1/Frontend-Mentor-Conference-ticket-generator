@@ -5,11 +5,11 @@ function MobileForm() {
   const verifyFileValidity = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const isValideType = ["image/jpeg", "image/png"].includes(file.type);
-      const isValideSize = file.size <= 500 * 1024; /* 500KB */
-      if (!isValideType || !isValideSize) {
+      const isValidType = ["image/jpeg", "image/png"].includes(file.type);
+      const isValidSize = file.size <= 500 * 1024; /* 500KB */
+      if (!isValidType || !isValidSize) {
         alert("Ivalid file!! Please choose a JPG or PNG image under 500KB.")
-        e.target = null
+        e.target.value = null
       }
     }
   };
@@ -25,7 +25,6 @@ function MobileForm() {
       <div className="pt-6 flex flex-col items-start gap-2">
         <p
           className="text-xl font-display text-white font-light"
-          htmlFor="avatarInput"
         >
           Upload Avatar
         </p>

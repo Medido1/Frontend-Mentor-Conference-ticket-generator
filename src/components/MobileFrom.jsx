@@ -1,7 +1,10 @@
 import uploadIcon from "../assets/images/icon-upload.svg";
 import infoIcon from "../assets/images/icon-info.svg";
+import { useState } from "react";
 
 function MobileForm() {
+  const [previewUrl, setPreviewUrl] = useState(null);
+
   const verifyFileValidity = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -9,7 +12,11 @@ function MobileForm() {
       const isValidSize = file.size <= 500 * 1024; /* 500KB */
       if (!isValidType || !isValidSize) {
         alert("Ivalid file!! Please choose a JPG or PNG image under 500KB.")
-        e.target.value = null
+        e.target.value = null;
+        setPreviewUrl(null)
+      } else {
+        const imageUrl = URL.createObjectURL(file);
+        setPreviewUrl(imageUrl)
       }
     }
   };
@@ -30,18 +37,29 @@ function MobileForm() {
         </p>
         <div
           className="border-2 border-dashed border-gray-400 rounded-lg p-6 
-        bg-blue-950 w-full"
+        bg-blue-950 w-full aspect-square relative max-h-60 flex flex-col justify-center"
         >
           <label htmlFor="avatarInput">
-            <img
+            {previewUrl ? (
+              <img 
+                src={previewUrl}
+                alt="preview"
+                className="absolute inset-0 w-full max-h-full 
+                object-cover rounded-md border-2 border-white"
+              />
+            ) : (
+              <img
               src={uploadIcon}
               alt="upload file"
               className="cursor-pointer bg-gray-700 mx-auto rounded-md p-2"
-            />
+              />
+            )}
           </label>
-          <p className="text-lg font-display text-[#d2d1d6] font-light mt-4">
-            Drag and drop or click to upload
-          </p>
+          {!previewUrl && (
+            <p className="text-lg font-display text-[#d2d1d6] font-light mt-4">
+              Drag and drop or click to upload
+            </p>
+          )}
         </div>
         <div className="flex justify-center gap-2">
           <img src={infoIcon} alt="info" />

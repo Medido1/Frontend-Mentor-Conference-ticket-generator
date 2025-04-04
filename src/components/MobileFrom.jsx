@@ -15,7 +15,7 @@ function MobileForm() {
   };
 
   return (
-    <form className="px-2">
+    <form className="px-2 max-w-md">
       <h1 className="text-3xl font-display font-semibold text-white !important">
         Your Journey to Coding Conf 2025 Starts Here!
       </h1>

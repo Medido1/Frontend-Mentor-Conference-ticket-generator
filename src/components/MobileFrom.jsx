@@ -11,7 +11,7 @@ function MobileForm() {
       const isValidType = ["image/jpeg", "image/png"].includes(file.type);
       const isValidSize = file.size <= 500 * 1024; /* 500KB */
       if (!isValidType || !isValidSize) {
-        alert("Ivalid file!! Please choose a JPG or PNG image under 500KB.")
+        alert("Invalid file!! Please choose a JPG or PNG image under 500KB.")
         e.target.value = null;
         setPreviewUrl(null)
       } else {

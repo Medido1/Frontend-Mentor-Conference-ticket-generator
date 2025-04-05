@@ -76,8 +76,8 @@ function MobileForm() {
           )}
         <input type="file" id="avatarInput" onChange={verifyFileValidity}/>
 
-        <InputComp id="FullName" text="Full Name" type="text"/>
-        <InputComp id="email" text="Email Adress" type="email" placeholder="example@email.com"/>
+        <InputComp id="fullName" text="Full Name" type="text"/>
+        <InputComp id="email" text="Email Address" type="email" placeholder="example@email.com"/>
         <InputComp id="GithubUserName" text="GitHub Username" type="text" placeholder="@yourusername"/>
       </form>
     </div>

@@ -5,6 +5,7 @@ import InputComp from "./InputComp";
 
 function MobileForm() {
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [errMsg, setErrMsg] = useState("");
 
   const verifyFileValidity = (e) => {
     const file = e.target.files[0];
@@ -12,12 +13,13 @@ function MobileForm() {
       const isValidType = ["image/jpeg", "image/png"].includes(file.type);
       const isValidSize = file.size <= 500 * 1024; /* 500KB */
       if (!isValidType || !isValidSize) {
-        alert("Invalid file!! Please choose a JPG or PNG image under 500KB.")
+        setErrMsg("Invalid file!! Please choose a JPG or PNG image under 500KB.")
         e.target.value = null;
         setPreviewUrl(null)
       } else {
         const imageUrl = URL.createObjectURL(file);
         setPreviewUrl(imageUrl)
+        setErrMsg("")
       }
     }
   };
@@ -62,12 +64,16 @@ function MobileForm() {
             </p>
           )}
         </div>
-        <div className="flex justify-center gap-2">
-          <img src={infoIcon} alt="info" />
-          <p className="text-xs font-display text-[#d2d1d6] font-thin">
-            Upload your photo (JPG or PNG, max size: 500KB).
-          </p>
-        </div>
+        {errMsg ? (
+          <p className="text-red-400 text-sm mt-2">{errMsg}</p>
+          ): (
+            <div className="flex justify-center gap-2">
+              <img src={infoIcon} alt="info" />
+              <p className="text-xs font-display text-[#d2d1d6] font-thin">
+                Upload your photo (JPG or PNG, max size: 500KB).
+              </p>
+            </div>
+          )}
         <input type="file" id="avatarInput" onChange={verifyFileValidity}/>
 
         <InputComp id="FullName" text="Full Name" type="text"/>

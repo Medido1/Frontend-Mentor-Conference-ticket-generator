@@ -1,6 +1,7 @@
 import uploadIcon from "../assets/images/icon-upload.svg";
 import infoIcon from "../assets/images/icon-info.svg";
 import { useState } from "react";
+import InputComp from "./InputComp";
 
 function MobileForm() {
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -68,6 +69,10 @@ function MobileForm() {
           </p>
         </div>
         <input type="file" id="avatarInput" onChange={verifyFileValidity}/>
+
+        <InputComp id="FullName" text="Full Name" type="text"/>
+        <InputComp id="email" text="Email Adress" type="email" placeholder="example@email.com"/>
+        <InputComp id="GithubUserName" text="GitHub Username" type="text" placeholder="@yourusername"/>
       </form>
     </div>
   );

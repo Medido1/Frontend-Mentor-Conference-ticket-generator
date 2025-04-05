@@ -10,6 +10,7 @@ function InputComp({id, text, type, placeholder}) {
         type={type} 
         id={id}
         placeholder={placeholder}
+        required
         className="mb-2 p-3 w-full border border-gray-200 rounded-lg bg-blue-950 text-white"
       />
     </div>

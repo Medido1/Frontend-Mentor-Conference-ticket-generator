@@ -79,6 +79,13 @@ function MobileForm() {
         <InputComp id="fullName" text="Full Name" type="text"/>
         <InputComp id="email" text="Email Address" type="email" placeholder="example@email.com"/>
         <InputComp id="GithubUserName" text="GitHub Username" type="text" placeholder="@yourusername"/>
+
+        <button 
+          type="submit"
+          className="mt-4 mb-4 w-full bg-[#FF6A5C]  text-blue-950 text-lg font-bold
+          py-3 rounded-xl cursor-pointer">
+          Generate My Ticket
+        </button>
       </form>
     </div>
   );

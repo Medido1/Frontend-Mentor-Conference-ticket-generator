@@ -45,7 +45,7 @@ function MobileForm() {
               <img 
                 src={previewUrl}
                 alt="preview"
-                className="absolute inset-0 w-full max-h-full 
+                className="absolute inset-0 w-full max-h-full cursor-pointer
                 object-cover rounded-md border-2 border-white"
               />
             ) : (

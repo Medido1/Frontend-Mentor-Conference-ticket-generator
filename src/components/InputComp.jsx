@@ -3,7 +3,7 @@ function InputComp({id, text, type, placeholder}) {
     <div className="flex flex-col gap-2 w-full mb-4">
       <label 
         htmlFor={id}
-        className="text-xl font-display text-white font-light text-left">
+        className="text-xl font-display text-white font-light text-left cursor-pointer">
         {text}
       </label>
       <input 

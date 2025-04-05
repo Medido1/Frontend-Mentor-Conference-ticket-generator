@@ -25,7 +25,7 @@ function MobileForm() {
   };
 
   return (
-    <div className="px-2 max-w-md">
+    <div className="px-2 max-w-md relative">
       <h1 className="text-3xl font-display font-semibold text-white !important">
         Your Journey to Coding Conf 2025 Starts Here!
       </h1>
@@ -82,7 +82,7 @@ function MobileForm() {
 
         <button 
           type="submit"
-          className="mt-4 mb-4 w-full bg-[#FF6A5C]  text-blue-950 text-lg font-bold
+          className="mb-16 w-full bg-[#FF6A5C]  text-blue-950 text-lg font-bold
           py-3 rounded-xl cursor-pointer">
           Generate My Ticket
         </button>

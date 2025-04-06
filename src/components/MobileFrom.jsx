@@ -11,6 +11,8 @@ function MobileForm() {
 
   const [previewUrl, setPreviewUrl] = useState(null);
   const [errMsg, setErrMsg] = useState("");
+  const [errors, setErrors] = useState({});
+ 
 
   useEffect(() => {
     return () => {
@@ -20,9 +22,26 @@ function MobileForm() {
     }
   }, [previewUrl])
 
+  const validateForm = () => {
+    const errors = {};
+
+    if (!state.fullName.trim()) errors.fullName = "FullName is required";
+
+    if (!state.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email)) {
+      errors.email = "Invalid email format";
+    }
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0 /* return true if there are no errors */
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(state)
+    if (validateForm()){
+      console.log(state)
+    }
   }
 
   const handleInputChange = (field, value) => {
@@ -59,6 +78,7 @@ function MobileForm() {
       <form 
         className="pt-6 px-4 flex flex-col items-start gap-2"
         onSubmit={handleSubmit}
+        noValidate
         >
         <p
           className="text-xl font-display text-white font-light"
@@ -108,6 +128,7 @@ function MobileForm() {
           text="Full Name" 
           type="text"
           value={fullName}
+          error={errors.fullName}
           handleChange={(e) => handleInputChange("fullName" , e.target.value)}/>
         <InputComp 
           id="email" 
@@ -115,6 +136,7 @@ function MobileForm() {
           type="email" 
           placeholder="example@email.com"
           value={email}
+          error={errors.email}
           handleChange={(e) => handleInputChange("email" , e.target.value)}
           />
         <InputComp 
@@ -125,7 +147,6 @@ function MobileForm() {
           value={userName}
           handleChange={(e) => handleInputChange("userName" , e.target.value)}
           />
-
         <button 
           type="submit"
           className="mb-16 w-full bg-[#FF6A5C]  text-blue-950 text-lg font-bold

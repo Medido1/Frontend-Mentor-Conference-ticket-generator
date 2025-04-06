@@ -17,17 +17,9 @@ function MobileForm() {
     console.log(state)
   }
 
-  const handleFullNameChange = (e) => {
-    dispatch({type : "SET_FULLNAME", payload: e.target.value})
-  }
-
-  const handleEmailChange = (e) => {
-    dispatch({type: "SET_EMAIL", payload: e.target.value})
-  }
-
-  const handleUserNameChange = (e) => {
-    dispatch({type: "SET_USERNAME", payload: e.target.value})
-  }
+  const handleInputChange = (field, value) => {
+    dispatch({type: `SET_${field.toUpperCase()}`, payload: value})
+  } 
 
   const verifyFileValidity = (e) => {
     const file = e.target.files[0];
@@ -108,14 +100,14 @@ function MobileForm() {
           text="Full Name" 
           type="text"
           value={fullName}
-          handleChange={handleFullNameChange}/>
+          handleChange={(e) => handleInputChange("fullName" , e.target.value)}/>
         <InputComp 
           id="email" 
           text="Email Address" 
           type="email" 
           placeholder="example@email.com"
           value={email}
-          handleChange={handleEmailChange}
+          handleChange={(e) => handleInputChange("email" , e.target.value)}
           />
         <InputComp 
           id="GithubUserName" 
@@ -123,7 +115,7 @@ function MobileForm() {
           type="text" 
           placeholder="@yourusername"
           value={userName}
-          handleChange={handleUserNameChange}
+          handleChange={(e) => handleInputChange("userName" , e.target.value)}
           />
 
         <button 

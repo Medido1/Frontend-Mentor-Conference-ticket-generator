@@ -6,6 +6,7 @@ const initialState = {
   fullName : "",
   email: "",
   userName: "",
+  avatar: null,
 }
 
 const formReducer = (state, action) => {
@@ -16,6 +17,8 @@ const formReducer = (state, action) => {
       return {...state, email: action.payload}
     case "SET_USERNAME":
       return {...state, userName: action.payload}
+    case "UPDATE_AVATAR":
+      return {...state, avatar: action.file}
     default:
       return state
   }

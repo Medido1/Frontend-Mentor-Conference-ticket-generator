@@ -36,10 +36,12 @@ function MobileForm() {
       const isValidSize = file.size <= 500 * 1024; /* 500KB */
       if (!isValidType || !isValidSize) {
         setErrMsg("Invalid file!! Please choose a JPG or PNG image under 500KB.")
+        dispatch({type: "UPDATE_AVATAR", file: null})
         e.target.value = null;
         setPreviewUrl(null)
       } else {
         const imageUrl = URL.createObjectURL(file);
+        dispatch({type: "UPDATE_AVATAR", file: imageUrl})
         setPreviewUrl(imageUrl)
         setErrMsg("")
       }

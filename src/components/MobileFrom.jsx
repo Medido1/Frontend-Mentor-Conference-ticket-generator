@@ -1,6 +1,6 @@
 import uploadIcon from "../assets/images/icon-upload.svg";
 import infoIcon from "../assets/images/icon-info.svg";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import InputComp from "./InputComp";
 import { formContext } from "../context/FormContext";
 
@@ -11,6 +11,14 @@ function MobileForm() {
 
   const [previewUrl, setPreviewUrl] = useState(null);
   const [errMsg, setErrMsg] = useState("");
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl){
+        URL.revokeObjectURL(previewUrl)
+      }
+    }
+  }, [previewUrl])
 
   const handleSubmit = (e) => {
     e.preventDefault();

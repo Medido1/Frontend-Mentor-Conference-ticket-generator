@@ -1,11 +1,33 @@
 import uploadIcon from "../assets/images/icon-upload.svg";
 import infoIcon from "../assets/images/icon-info.svg";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import InputComp from "./InputComp";
+import { formContext } from "../context/FormContext";
 
 function MobileForm() {
+  const {state, dispatch} = useContext(formContext);
+  const {fullName, email, userName} = state;
+
+
   const [previewUrl, setPreviewUrl] = useState(null);
   const [errMsg, setErrMsg] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(state)
+  }
+
+  const handleFullNameChange = (e) => {
+    dispatch({type : "SET_FULLNAME", payload: e.target.value})
+  }
+
+  const handleEmailChange = (e) => {
+    dispatch({type: "SET_EMAIL", payload: e.target.value})
+  }
+
+  const handleUserNameChange = (e) => {
+    dispatch({type: "SET_USERNAME", payload: e.target.value})
+  }
 
   const verifyFileValidity = (e) => {
     const file = e.target.files[0];
@@ -32,7 +54,10 @@ function MobileForm() {
       <p className="text-xl font-display text-[#d2d1d6] mt-6 font-medium">
         Secure your spot at next year's biggest coding conference.
       </p>
-      <form className="pt-6 px-4 flex flex-col items-start gap-2">
+      <form 
+        className="pt-6 px-4 flex flex-col items-start gap-2"
+        onSubmit={handleSubmit}
+        >
         <p
           className="text-xl font-display text-white font-light"
         >
@@ -76,9 +101,28 @@ function MobileForm() {
           )}
         <input type="file" id="avatarInput" onChange={verifyFileValidity}/>
 
-        <InputComp id="fullName" text="Full Name" type="text"/>
-        <InputComp id="email" text="Email Address" type="email" placeholder="example@email.com"/>
-        <InputComp id="GithubUserName" text="GitHub Username" type="text" placeholder="@yourusername"/>
+        <InputComp 
+          id="fullName" 
+          text="Full Name" 
+          type="text"
+          value={fullName}
+          handleChange={handleFullNameChange}/>
+        <InputComp 
+          id="email" 
+          text="Email Address" 
+          type="email" 
+          placeholder="example@email.com"
+          value={email}
+          handleChange={handleEmailChange}
+          />
+        <InputComp 
+          id="GithubUserName" 
+          text="GitHub Username" 
+          type="text" 
+          placeholder="@yourusername"
+          value={userName}
+          handleChange={handleUserNameChange}
+          />
 
         <button 
           type="submit"

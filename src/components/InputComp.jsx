@@ -1,4 +1,4 @@
-function InputComp({id, text, type, placeholder}) {
+function InputComp({id, text, type, placeholder,value, handleChange}) {
   return (
     <div className="flex flex-col gap-2 w-full mb-4">
       <label 
@@ -10,6 +10,8 @@ function InputComp({id, text, type, placeholder}) {
         type={type} 
         id={id}
         placeholder={placeholder}
+        value = {value}
+        onChange={handleChange}
         required
         className="mb-2 p-3 w-full border border-gray-200 rounded-lg bg-blue-950 text-white"
       />

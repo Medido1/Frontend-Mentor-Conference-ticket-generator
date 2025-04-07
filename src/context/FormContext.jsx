@@ -7,6 +7,7 @@ const initialState = {
   email: "",
   userName: "",
   avatar: null,
+  isValid: false,
 }
 
 const formReducer = (state, action) => {
@@ -19,6 +20,8 @@ const formReducer = (state, action) => {
       return {...state, userName: action.payload}
     case "UPDATE_AVATAR":
       return {...state, avatar: action.file}
+    case "VALIDATE_FORM":
+      return {...state, isValid: action.payload}
     default:
       return state
   }

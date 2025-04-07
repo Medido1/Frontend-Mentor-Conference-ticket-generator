@@ -6,11 +6,11 @@ import { formContext } from "../context/FormContext";
 
 function MobileForm() {
   const {state, dispatch} = useContext(formContext);
-  const {fullName, email, userName} = state;
+  const {fullName, email, userName, isValid} = state;
 
 
   const [previewUrl, setPreviewUrl] = useState(null);
-  const [errMsg, setErrMsg] = useState("");
+  const [errMsg, setErrMsg] = useState(""); /* Avatar err msg */
   const [errors, setErrors] = useState({});
  
 
@@ -33,6 +33,12 @@ function MobileForm() {
       errors.email = "Invalid email format";
     }
 
+    if (!state.avatar) {
+      setErrMsg("Please upload an avatar!!");
+      return false;
+    }
+    
+
     setErrors(errors);
     return Object.keys(errors).length === 0 /* return true if there are no errors */
   }
@@ -40,8 +46,10 @@ function MobileForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()){
+      dispatch({type: "VALIDATE_FORM", payload: true})
       console.log(state)
     }
+
   }
 
   const handleInputChange = (field, value) => {
@@ -64,6 +72,9 @@ function MobileForm() {
         setPreviewUrl(imageUrl)
         setErrMsg("")
       }
+    }
+    else {
+      setErrMsg("Upload an image!!")
     }
   };
 
@@ -121,7 +132,7 @@ function MobileForm() {
               </p>
             </div>
           )}
-        <input type="file" id="avatarInput" onChange={verifyFileValidity}/>
+        <input type="file" id="avatarInput" onChange={verifyFileValidity} required/>
 
         <InputComp 
           id="fullName" 
@@ -140,7 +151,7 @@ function MobileForm() {
           handleChange={(e) => handleInputChange("email" , e.target.value)}
           />
         <InputComp 
-          id="GithubUserName" 
+          id="githubUserName" 
           text="GitHub Username" 
           type="text" 
           placeholder="@yourusername"

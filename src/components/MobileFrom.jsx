@@ -12,8 +12,8 @@ function MobileForm() {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [errMsg, setErrMsg] = useState(""); /* Avatar err msg */
   const [errors, setErrors] = useState({});
+  const [isDragging, setIsDragging] = useState(false);
  
-
   useEffect(() => {
     return () => {
       if (previewUrl){
@@ -56,22 +56,26 @@ function MobileForm() {
     dispatch({type: `SET_${field.toUpperCase()}`, payload: value})
   } 
 
+  const handleFile = (file) => {
+    const isValidType = ["image/jpeg", "image/png"].includes(file.type);
+    const isValidSize = file.size <= 500 * 1024; // 500KB
+  
+    if (!isValidType || !isValidSize) {
+      setErrMsg("Invalid file!! Please choose a JPG or PNG image under 500KB.");
+      dispatch({ type: "UPDATE_AVATAR", file: null });
+      setPreviewUrl(null);
+    } else {
+      const imageUrl = URL.createObjectURL(file);
+      dispatch({ type: "UPDATE_AVATAR", file: imageUrl });
+      setPreviewUrl(imageUrl);
+      setErrMsg("");
+    }
+  };
+  
   const verifyFileValidity = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const isValidType = ["image/jpeg", "image/png"].includes(file.type);
-      const isValidSize = file.size <= 500 * 1024; /* 500KB */
-      if (!isValidType || !isValidSize) {
-        setErrMsg("Invalid file!! Please choose a JPG or PNG image under 500KB.")
-        dispatch({type: "UPDATE_AVATAR", file: null})
-        e.target.value = null;
-        setPreviewUrl(null)
-      } else {
-        const imageUrl = URL.createObjectURL(file);
-        dispatch({type: "UPDATE_AVATAR", file: imageUrl})
-        setPreviewUrl(imageUrl)
-        setErrMsg("")
-      }
+      handleFile(file)
     }
     else {
       setErrMsg("Upload an image!!")
@@ -98,15 +102,29 @@ function MobileForm() {
         </p>
         <div
           className="border-2 border-dashed border-gray-400 rounded-lg   
-        bg-blue-950 w-full aspect-square relative max-h-60 flex flex-col justify-center"
+        bg-blue-950 w-full aspect-square relative max-h-44 flex flex-col 
+        items-center justify-center"
+        onDragOver={(e) => {
+          e.preventDefault();
+          setIsDragging(true)
+        }}
+        onDragLeave={() => setIsDragging(false)}
+        onDrop={(e) => {
+          e.preventDefault();
+          setIsDragging(false);
+          const file = e.dataTransfer.files[0]
+          if (file) {
+            handleFile(file)
+          }
+        }}
         >
           <label htmlFor="avatarInput">
             {previewUrl ? (
               <img 
                 src={previewUrl}
                 alt="preview"
-                className="absolute inset-0 w-full max-h-full cursor-pointer
-                object-cover rounded-md border-2 border-white"
+                className="max-w-full max-h-full cursor-pointer
+                rounded-md border-2 border-white"
               />
             ) : (
               <img

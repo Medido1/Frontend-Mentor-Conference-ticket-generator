@@ -13,7 +13,7 @@ function App() {
   const {isValid} = state;
 
   return (
-    <div className='min-h-screen w-screen bg-cover bg-center
+    <div className='min-h-[140vh] w-screen bg-cover bg-center
       flex justify-center text-center relative'
       style={{backgroundImage: `url(${bgMobile})`}}>
       <div>
@@ -26,7 +26,7 @@ function App() {
         {!isValid ? (
           <MobileForm />
         ): (
-          <Ticket />
+          <Ticket className="px-4"/>
         )}
         
       </div>

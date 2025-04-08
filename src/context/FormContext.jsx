@@ -2,13 +2,21 @@ import { Children, createContext, useReducer } from "react";
 
 export const formContext = createContext();
 
-const initialState = {
+const initialState = { 
   fullName : "",
   email: "",
   userName: "",
   avatar: null,
   isValid: false,
 }
+
+  /* const initialState = {
+    fullName: "Mehdi Bousalah",
+    email: "medi1222@gmail.com",
+    userName: "Medidoss",
+    avatar: '../assets/images/image-avatar.jpg',
+    isValid : true
+  } */
 
 const formReducer = (state, action) => {
   switch (action.type) {

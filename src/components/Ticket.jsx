@@ -2,12 +2,11 @@ import { useContext } from "react";
 import { formContext } from "../context/FormContext";
 import patternTicket from '../assets/images/pattern-ticket.svg';
 import logo from '../assets/images/logo-full.svg'
-import avatar from "../assets/images/image-avatar.jpg";
 import gitHubicon from "../assets/images/icon-github.svg"
 
 function Ticket() {
   const {state, dispatch} = useContext(formContext)
-  const {fullName, email, userName} = state
+  const {fullName, email, userName, avatar} = state
 
   return (
     <div className="px-4 flex flex-col items-center">

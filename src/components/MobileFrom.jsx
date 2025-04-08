@@ -125,12 +125,12 @@ function MobileForm() {
         }}
         >
             {previewUrl ? (
-              <div>
+              <div className="flex flex-col items-center">
                 <img 
                 src={previewUrl}
                 alt="preview"
-                className="w-1/3 cursor-pointer mx-auto mb-4
-                rounded-lg border-2 border-white"
+                className="w-1/3 cursor-pointer mb-4
+                rounded-lg border-2 border-white max-h-[100px]"
                 />
                 <div className="text-white text-sm flex gap-4">
                   <button 

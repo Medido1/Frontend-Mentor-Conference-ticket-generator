@@ -1,6 +1,6 @@
 import uploadIcon from "../assets/images/icon-upload.svg";
 import infoIcon from "../assets/images/icon-info.svg";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import InputComp from "./InputComp";
 import { formContext } from "../context/FormContext";
 
@@ -13,6 +13,8 @@ function MobileForm() {
   const [errMsg, setErrMsg] = useState(""); /* Avatar err msg */
   const [errors, setErrors] = useState({});
   const [isDragging, setIsDragging] = useState(false);
+
+  const fileInputRef = useRef(null); 
  
   useEffect(() => {
     return () => {
@@ -31,6 +33,10 @@ function MobileForm() {
       errors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email)) {
       errors.email = "Invalid email format";
+    }
+
+    if (!state.userName.trim()) {
+      errors.userName = "Username is required";
     }
 
     if (!state.avatar) {
@@ -118,22 +124,39 @@ function MobileForm() {
           }
         }}
         >
-          <label htmlFor="avatarInput">
             {previewUrl ? (
-              <img 
+              <div>
+                <img 
                 src={previewUrl}
                 alt="preview"
-                className="max-w-full max-h-full cursor-pointer
-                rounded-md border-2 border-white"
-              />
+                className="w-1/3 cursor-pointer mx-auto mb-4
+                rounded-lg border-2 border-white"
+                />
+                <div className="text-white text-sm flex gap-4">
+                  <button 
+                    className="bg-gray-600 p-2 rounded-sm cursor-pointer"
+                    onClick={() => setPreviewUrl(null)}
+                    >
+                    Remove image
+                  </button>
+                  <button 
+                    className="bg-gray-600 p-2 rounded-sm cursor-pointer"
+                    onClick={() => fileInputRef.current.click()}
+                    >
+                    Change image
+                  </button>
+                </div>
+              </div>
             ) : (
+              <label htmlFor="avatarInput">
               <img
-              src={uploadIcon}
-              alt="upload file"
-              className="cursor-pointer bg-gray-700 mx-auto rounded-md p-2"
+                src={uploadIcon}
+                alt="upload file"
+                className="cursor-pointer bg-gray-700 mx-auto rounded-md p-2"
               />
+              </label>
             )}
-          </label>
+          
           {!previewUrl && (
             <p className="text-lg font-display text-[#d2d1d6] font-light mt-4">
               Drag and drop or click to upload
@@ -150,7 +173,12 @@ function MobileForm() {
               </p>
             </div>
           )}
-        <input type="file" id="avatarInput" onChange={verifyFileValidity} required/>
+        <input 
+          type="file" 
+          id="avatarInput" 
+          onChange={verifyFileValidity} 
+          ref={fileInputRef}
+          required/>
 
         <InputComp 
           id="fullName" 
@@ -174,6 +202,7 @@ function MobileForm() {
           type="text" 
           placeholder="@yourusername"
           value={userName}
+          error={errors.userName}
           handleChange={(e) => handleInputChange("userName" , e.target.value)}
           />
         <button 

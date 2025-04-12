@@ -31,7 +31,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [solution](https://github.com/Medido1/Frontend-Mentor-Conference-ticket-generator)
-- Live Site URL: [live site](https://conferenceticketgenerato.netlify.app/?fbclid=IwY2xjawJnmfpleHRuA2FlbQIxMAABHk7exNpglHjicO_Hu0IDlYEPEA4pk-pLdO9C7qTtm0kQqSuMMFJP2VWwnCy3_aem_EIfpw12zXSdiJ9mTGXo0vA)
+- Live Site URL: [live site](https://conferenceticketgenerato.netlify.app/)
 
 ### Screenshot
 

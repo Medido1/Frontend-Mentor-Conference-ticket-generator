@@ -9,7 +9,7 @@ function Ticket() {
   const {fullName, email, userName, avatar} = state
 
   return (
-    <div className="px-4 flex flex-col items-center">
+    <div className="px-4 flex flex-col items-center max-w-md">
       <h1 className="text-white text-2xl font-bold mb-4">
         Congrats,   
         <span 

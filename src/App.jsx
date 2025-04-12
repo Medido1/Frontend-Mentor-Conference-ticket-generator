@@ -9,12 +9,12 @@ import { useContext} from 'react';
 import Ticket from "./components/Ticket.jsx"
 
 function App() {
-  const {state, dispatch} = useContext(formContext);
+  const {state} = useContext(formContext);
   const {isValid} = state;
 
   return (
-    <div className='min-h-[140vh] w-screen bg-cover bg-center
-      flex justify-center text-center relative'
+    <main className='min-h-[140vh] w-screen bg-cover bg-center
+      flex text-center relative'
       style={{backgroundImage: `url(${bgMobile})`}}>
       <div>
         <img className='pt-8 pb-8 justify-self-center' src={logo} alt="logo" />
@@ -26,11 +26,11 @@ function App() {
         {!isValid ? (
           <MobileForm />
         ): (
-          <Ticket className="px-4"/>
+          <Ticket />
         )}
         
       </div>
-    </div>
+    </main>
   )
 }
 

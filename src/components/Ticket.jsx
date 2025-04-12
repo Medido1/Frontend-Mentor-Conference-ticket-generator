@@ -26,10 +26,10 @@ function Ticket() {
       </p>
 
       <div className="mt-16 relative max-h-40 max-w-[400px]"> 
-        <img src={patternTicket} alt="ticket" className="h-full" />
+        <img src={patternTicket} alt="ticket" />
         <div>
           <div className="flex flex-col items-start absolute top-4 left-4 gap-2">
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="event logo" />
             <p className="text-[#d2d1d6] text-sm ml-12 font-light">Jan 31, 2025 / Austin, Tx</p>
           </div>
         </div>
@@ -40,7 +40,7 @@ function Ticket() {
             alt="avatar" />
             <div >
               <p className="text-white">{fullName}</p>
-              <p className="flex item-center text-[#d2d1d6]">
+              <p className="flex itemscenter text-[#d2d1d6]">
                 <img src={gitHubicon} alt="github" />
                 @{userName}
               </p>

@@ -10,11 +10,11 @@ function Ticket() {
 
   return (
     <div className="px-4 flex flex-col items-center max-w-sm">
-      <h1 className="text-white text-2xl md:text-4xl font-bold mb-4 ">
+      <h1 className="text-white text-xl md:text-4xl font-bold mb-4" >
         Congrats,   
         <span 
           className="bg-gradient-to-r from-[hsl(7,86%,67%)] to-[hsl(0,0%,100%)] 
-            bg-clip-text text-transparent mx-4">
+            bg-clip-text text-transparent mx-2">
           {fullName}!
         </span>
          Your ticket is ready.

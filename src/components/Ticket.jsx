@@ -9,7 +9,7 @@ function Ticket() {
   const {fullName, email, userName, avatar} = state
 
   return (
-    <div className="px-4 flex flex-col items-center max-w-sm">
+    <div className="px-4 flex flex-col items-center max-w-sm md:max-w-lg">
       <h1 className="text-white text-xl md:text-4xl font-bold mb-4" >
         Congrats,   
         <span 
@@ -33,9 +33,9 @@ function Ticket() {
             <p className="text-[#d2d1d6] text-sm ml-12 font-light">Jan 31, 2025 / Austin, Tx</p>
           </div>
         </div>
-        <div className="absolute bottom-2 left-4 flex gap-4">
+        <div className="absolute bottom-2 md:bottom-0 left-4 flex gap-4">
           <img 
-            className="h-12 rounded-xl"
+            className="h-12 md:h-14 rounded-xl"
             src={avatar} 
             alt="avatar" />
             <div >

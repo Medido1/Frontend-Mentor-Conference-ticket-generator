@@ -25,7 +25,7 @@ function App() {
   }, [])
 
   return (
-    <main className='min-h-[140vh] w-screen bg-cover bg-center
+    <main className='min-h-[140vh] md:min-h-[100vh] w-screen bg-cover bg-center
       flex justify-center  text-center relative'
       style={{backgroundImage: `url(${bgImg})`}}>
       <div>
@@ -35,7 +35,7 @@ function App() {
             md:w-1/3"/>
         <img src={patternMobile} 
           className='absolute bottom-0 h-32  object-cover z-0
-            md:h-1/3 left-0'
+            md:h-1/2 left-0'
         />
         {!isValid ? (
           <MobileForm />
